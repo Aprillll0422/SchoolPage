@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useSchoolStore } from "@/store/useSchoolStore";
 import ImageUpload from "./ImageUpload";
-import { Wand2, Sparkles, School } from "lucide-react";
+import AISettings from "./AISettings";
+import { Wand2, Sparkles, School, Settings, AlertCircle } from "lucide-react";
 
 interface UploadFormProps {
   onGenerate: () => void;
 }
 
 export default function UploadForm({ onGenerate }: UploadFormProps) {
-  const { school, setSchool, isGenerating } = useSchoolStore();
+  const { school, setSchool, isGenerating, error, aiConfig } = useSchoolStore();
   const [schoolName, setSchoolName] = useState(school.name);
+  const [showSettings, setShowSettings] = useState(false);
 
   const canGenerate =
     schoolName.trim() && school.logo && school.horizontalImage && school.verticalImage;
@@ -35,6 +37,42 @@ export default function UploadForm({ onGenerate }: UploadFormProps) {
         </div>
 
         <div className="bg-white rounded-3xl shadow-xl border border-slate-200 p-8 md:p-10">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <span
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${
+                  aiConfig.useMock
+                    ? "bg-slate-100 text-slate-600"
+                    : "bg-green-100 text-green-700"
+                }`}
+              >
+                <span
+                  className={`w-2 h-2 rounded-full ${
+                    aiConfig.useMock ? "bg-slate-400" : "bg-green-500"
+                  }`}
+                />
+                {aiConfig.useMock ? "模拟模式" : "真实 AI 模式"}
+              </span>
+            </div>
+            <button
+              onClick={() => setShowSettings(true)}
+              className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors"
+            >
+              <Settings className="w-4 h-4" />
+              <span className="text-sm font-medium">AI 设置</span>
+            </button>
+          </div>
+
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-medium text-red-800">生成失败</p>
+                <p className="text-sm text-red-600 mt-1">{error}</p>
+              </div>
+            </div>
+          )}
+
           <div className="mb-8">
             <label className="block text-sm font-semibold text-slate-700 mb-2">
               <div className="flex items-center gap-2">
@@ -111,6 +149,8 @@ export default function UploadForm({ onGenerate }: UploadFormProps) {
           </div>
         </div>
       </div>
+
+      <AISettings isOpen={showSettings} onClose={() => setShowSettings(false)} />
     </section>
   );
 }
