@@ -79,7 +79,7 @@ export default function ImageUpload({
   const aspectClass = {
     square: "aspect-square",
     horizontal: "aspect-video",
-    vertical: "aspect-[3/4]",
+    vertical: "aspect-[9/16]",
   }[aspectRatio];
 
   return (

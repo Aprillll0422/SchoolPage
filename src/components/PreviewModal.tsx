@@ -62,7 +62,7 @@ export default function PreviewModal({ isOpen, onClose }: PreviewModalProps) {
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
+      <div className="relative bg-white rounded-2xl shadow-2xl w-[90vw] max-w-none h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
           <div>
             <h3 className="text-xl font-bold text-slate-900">
