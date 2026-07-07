@@ -51,7 +51,7 @@ export default function UploadForm({ onGenerate }: UploadFormProps) {
                     aiConfig.useMock ? "bg-slate-400" : "bg-green-500"
                   }`}
                 />
-                {aiConfig.useMock ? "模拟模式" : "真实 AI 模式"}
+                {aiConfig.useMock ? "模拟模式" : "DeepSeek 模式"}
               </span>
             </div>
             <button

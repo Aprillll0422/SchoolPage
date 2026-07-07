@@ -10,9 +10,9 @@ export interface AIConfig {
 
 const DEFAULT_CONFIG: AIConfig = {
   apiKey: "",
-  baseUrl: "https://api.openai.com/v1",
-  model: "gpt-3.5-turbo",
-  useMock: true,
+  baseUrl: "https://api.deepseek.com/v1",
+  model: "deepseek-chat",
+  useMock: false,
 };
 
 const CONFIG_KEY = "school-ai-config";
