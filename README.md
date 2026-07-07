@@ -29,7 +29,6 @@
 ### 安装依赖
 
 ```bash
-cd school-website-generator
 pnpm install
 ```
 
